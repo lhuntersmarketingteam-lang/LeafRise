@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LeafRise — Cannabis Marketing Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=PT+Serif:ital@1&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN SYSTEM — LeafRise v2 (Premium)
+   Style: Glossy Tech Premium
+   Palette: Deep green + muted sage + gold accents + cream
+   Typography: Montserrat (all) + PT Serif Italic (logo only)
+============================================================ */
+:root {
+  --green:      #0E4D14;
+  --green-rgb:  14, 77, 20;
+  --sage:       #5A7A52;
+  --sage-rgb:   90, 122, 82;
+  --amber:      #C49A2A;
+  --amber-rgb:  196, 154, 42;
+  --cream:      #FAF6F0;
+  --cream-warm: #F3EDE2;
+  --white:      #FFFFFF;
+  --dark:       #0B1A0E;
+  --dark-card:  #111E14;
+  --text:       #1A2E1C;
+  --text-body:  #4A4A45;
+  --text-muted: #8A8A80;
+  --border:     #E2DED6;
+  --border-light: #ECEAE4;
+  --font-h:     'Montserrat', sans-serif;
+  --font-logo:  'PT Serif', serif;
+  --font-b:     'Montserrat', sans-serif;
+  --radius:     8px;
+  --radius-sm:  6px;
+  --radius-xs:  4px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-b);
+  color: var(--text-body);
+  background: var(--cream);
+  line-height: 1.6;
+  overflow-x: hidden;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+h1, h2, h3, h4 { font-family: var(--font-h); line-height: 1.12; color: var(--text); }
+h1 { font-size: clamp(40px, 5vw, 68px); font-weight: 700; letter-spacing: -2px; }
+h2 { font-size: clamp(30px, 3.5vw, 46px); font-weight: 700; letter-spacing: -1px; }
+h3 { font-size: clamp(20px, 2vw, 24px); font-weight: 600; }
+p  { font-size: 16px; line-height: 1.8; color: var(--text-body); font-weight: 300; }
+.lead { font-size: 18px; line-height: 1.75; color: var(--text-body); font-weight: 300; }
+
+.label {
+  font-family: var(--font-h);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--sage);
+}
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-b);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  border: none;
+}
+.btn-primary {
+  background: var(--green);
+  color: var(--white);
+}
+.btn-primary:hover {
+  background: #0B3B10;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(var(--green-rgb), 0.25);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  border: 1.5px solid var(--border);
+}
+.btn-outline:hover {
+  border-color: var(--green);
+  color: var(--green);
+  transform: translateY(-1px);
+}
+.btn-outline-light {
+  background: transparent;
+  color: rgba(255,255,255,0.8);
+  border: 1.5px solid rgba(255,255,255,0.2);
+}
+.btn-outline-light:hover {
+  border-color: rgba(255,255,255,0.5);
+  color: var(--white);
+}
+.btn-white {
+  background: var(--white);
+  color: var(--green);
+}
+.btn-white:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+/* ============================================================
+   NAV
+============================================================ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(250, 246, 240, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  padding: 14px 0;
+  transition: box-shadow 0.3s ease;
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  font-family: var(--font-logo);
+  font-size: 24px;
+  font-style: italic;
+  color: var(--green);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-cta { font-size: 13px; padding: 10px 24px; }
+
+@media (max-width: 768px) { .nav-links { display: none; } }
+
+/* ============================================================
+   HERO — Premium, tech-forward, glossy
+============================================================ */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 0 80px;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 50%, rgba(var(--sage-rgb), 0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(var(--amber-rgb), 0.04) 0%, transparent 60%),
+    linear-gradient(180deg, var(--cream) 0%, #F5F1E8 100%);
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-label {
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.2s;
+}
+.hero-title {
+  color: var(--text);
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.35s;
+}
+.hero-title em {
+  color: var(--amber);
+  font-style: normal;
+}
+.hero-sub {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--text-body);
+  margin-bottom: 36px;
+  max-width: 480px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.5s;
+}
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.65s;
+}
+.hero-guarantee {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-muted);
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.8s;
+}
+.hero-guarantee svg { flex-shrink: 0; }
+.hero-guarantee strong { color: var(--text); font-weight: 600; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Orbital System — Glossy, tech ── */
+.hero-orbital {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  max-width: 480px;
+  margin: 0 auto;
+  opacity: 0;
+  animation: fadeUp 1s ease forwards 0.5s;
+}
+
+.orbit {
+  position: absolute;
+  border: 1px solid rgba(var(--green-rgb), 0.07);
+  border-radius: 50%;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+.orbit-1 { width: 55%; height: 55%; }
+.orbit-2 { width: 78%; height: 78%; }
+.orbit-3 { width: 100%; height: 100%; border-style: dashed; border-color: rgba(var(--green-rgb), 0.05); }
+
+.orbit-center {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 5;
+}
+.orbit-center-number {
+  font-family: var(--font-h);
+  font-size: clamp(36px, 4vw, 48px);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+  letter-spacing: -1px;
+}
+.orbit-center-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-top: 6px;
+  letter-spacing: 0.5px;
+}
+
+/* Orbital items — glossy cannabis buds/leaves as SVG circles */
+.orbit-spinner {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+.orbit-item {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  /* No background, no circle — just the SVG floating freely */
+  background: none;
+  border: none;
+  box-shadow: none;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.1));
+}
+.orbit-item svg { display: block; }
+
+.orbit-item--lg { width: 40px; height: 40px; margin: -20px 0 0 -20px; }
+.orbit-item--md { width: 32px; height: 32px; margin: -16px 0 0 -16px; }
+.orbit-item--sm { width: 24px; height: 24px; margin: -12px 0 0 -12px; opacity: 0.6; }
+.orbit-item--xs { width: 18px; height: 18px; margin: -9px 0 0 -9px; opacity: 0.4; }
+
+.orbit-spinner-1 { animation: spin 25s linear infinite; }
+.orbit-spinner-2 { animation: spin 25s linear infinite reverse; }
+.orbit-spinner-3 { animation: spin 35s linear infinite; }
+.orbit-spinner-4 { animation: spin 35s linear infinite reverse; }
+.orbit-spinner-5 { animation: spin 30s linear infinite; }
+.orbit-spinner-6 { animation: spin 40s linear infinite reverse; }
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; text-align: center; }
+  .hero-sub { margin-left: auto; margin-right: auto; }
+  .hero-buttons { justify-content: center; }
+  .hero-guarantee { justify-content: center; }
+  .hero-orbital { max-width: 320px; margin-top: 40px; }
+}
+
+/* ============================================================
+   STATS BAR — Dark premium
+============================================================ */
+#stats {
+  background: var(--dark);
+  padding: 56px 0;
+  border-top: 1px solid rgba(255,255,255,0.03);
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.stat-item {
+  text-align: center;
+  padding: 0 24px;
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+.stat-item:last-child { border-right: none; }
+.stat-number {
+  font-family: var(--font-h);
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 8px;
+  letter-spacing: -1px;
+}
+.stat-label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+@media (max-width: 700px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); padding: 24px; }
+  .stat-item:nth-child(3), .stat-item:nth-child(4) { border-bottom: none; }
+}
+
+/* ============================================================
+   SECTIONS — COMMON
+============================================================ */
+.section { padding: 100px 0; }
+.section-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 72px;
+}
+.section-header h2 { margin-bottom: 16px; }
+.section-header p { color: var(--text-muted); }
+.divider {
+  width: 40px;
+  height: 2px;
+  background: var(--sage);
+  margin: 20px 0;
+}
+.divider-amber { background: var(--amber); }
+
+/* ============================================================
+   WHY US — 3 PILLARS
+============================================================ */
+#why { background: var(--cream); }
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 40px 36px;
+  border: 1px solid var(--border-light);
+  transition: all 0.3s ease;
+  border-top: 3px solid transparent;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.06);
+  border-color: var(--border-light);
+}
+.card-1:hover { border-top-color: var(--green); }
+.card-2:hover { border-top-color: var(--sage); }
+.card-3:hover { border-top-color: var(--amber); }
+.pillar-num {
+  font-family: var(--font-h);
+  font-size: 48px;
+  font-weight: 700;
+  color: rgba(0,0,0,0.04);
+  line-height: 1;
+  margin-bottom: 20px;
+}
+.pillar-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.pillar-text {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  font-weight: 300;
+}
+@media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   PACKAGE QUIZ
+============================================================ */
+#quiz {
+  background: var(--dark);
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+#quiz::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  right: -15%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(var(--green-rgb), 0.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+#quiz .section-header h2 { color: var(--white); }
+#quiz .section-header p { color: rgba(255,255,255,0.45); }
+#quiz .section-header .label { color: rgba(255,255,255,0.3); }
+.quiz-wrapper {
+  max-width: 640px;
+  margin: 0 auto;
+  background: var(--white);
+  border-radius: var(--radius);
+  border: none;
+  padding: 48px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+}
+.quiz-progress {
+  position: absolute;
+  top: 0; left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--green), var(--amber));
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.quiz-step-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.quiz-question {
+  font-family: var(--font-h);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 32px;
+  letter-spacing: -0.5px;
+}
+.quiz-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.quiz-option {
+  background: var(--cream);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  font-family: var(--font-b);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-body);
+}
+.quiz-option:hover {
+  border-color: var(--sage);
+  background: rgba(var(--sage-rgb), 0.04);
+}
+.quiz-option.selected {
+  border-color: var(--green);
+  background: rgba(var(--green-rgb), 0.04);
+  color: var(--green);
+}
+.quiz-option-icon {
+  width: 32px;
+  height: 32px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  background: rgba(var(--green-rgb), 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.quiz-option-icon svg { width: 16px; height: 16px; color: var(--green); }
+.quiz-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 28px;
+}
+.quiz-back {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: var(--font-b);
+  padding: 8px 0;
+  transition: color 0.2s;
+}
+.quiz-back:hover { color: var(--text); }
+
+.quiz-result { text-align: center; }
+.quiz-result-badge {
+  display: inline-block;
+  background: rgba(var(--green-rgb), 0.06);
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+}
+.quiz-result-package {
+  font-family: var(--font-h);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+.quiz-result-reason {
+  font-size: 15px;
+  color: var(--text-body);
+  line-height: 1.75;
+  max-width: 440px;
+  margin: 0 auto 28px;
+  font-weight: 300;
+}
+.quiz-result .btn { margin: 0 6px; }
+.quiz-hidden { display: none; }
+
+@media (max-width: 560px) {
+  .quiz-options { grid-template-columns: 1fr; }
+  .quiz-wrapper { padding: 32px 24px; }
+}
+
+/* ============================================================
+   PACKAGES
+============================================================ */
+#packages { background: var(--cream); }
+.pkg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+.pkg-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.pkg-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.06); }
+.pkg-card-featured {
+  border-color: var(--green);
+  box-shadow: 0 8px 40px rgba(var(--green-rgb), 0.08);
+}
+.pkg-header { padding: 32px 28px 20px; }
+.pkg-badge {
+  background: var(--green);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: var(--radius-xs);
+  display: inline-block;
+  margin-bottom: 12px;
+}
+.pkg-name {
+  font-family: var(--font-h);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+  letter-spacing: -0.3px;
+}
+.pkg-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-weight: 300;
+}
+.pkg-desc {
+  font-size: 14px;
+  color: var(--text-body);
+  line-height: 1.75;
+  padding: 0 28px 20px;
+  font-weight: 300;
+}
+.pkg-services { padding: 20px 28px; border-top: 1px solid var(--border-light); }
+.pkg-services-title {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+.pkg-service-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: var(--text-body);
+  font-weight: 400;
+}
+.pkg-service-item::before {
+  content: '';
+  width: 16px; height: 16px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  background: rgba(var(--green-rgb), 0.08);
+  border-radius: 50%;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 5L4 7L8 3' stroke='%230E4D14' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.pkg-cta { padding: 20px 28px 28px; }
+.pkg-cta .btn { width: 100%; text-align: center; justify-content: center; }
+@media (max-width: 900px) { .pkg-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; } }
+
+/* ============================================================
+   PROCESS
+============================================================ */
+#process { background: var(--white); }
+.process-track {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  position: relative;
+}
+.process-track::before {
+  content: '';
+  position: absolute;
+  top: 24px; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--green), var(--sage), var(--amber));
+  opacity: 0.3;
+}
+.process-step {
+  text-align: center;
+  padding: 0 12px;
+  position: relative;
+  z-index: 1;
+}
+.process-dot {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-family: var(--font-h);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-muted);
+  box-shadow: 0 0 0 5px var(--white);
+  transition: all 0.3s ease;
+}
+.process-step:hover .process-dot {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--white);
+}
+.process-step-title {
+  font-family: var(--font-h);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.process-step-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  font-weight: 300;
+}
+@media (max-width: 768px) {
+  .process-track { grid-template-columns: 1fr; gap: 28px; }
+  .process-track::before { display: none; }
+  .process-step { text-align: left; display: flex; gap: 20px; align-items: flex-start; }
+  .process-dot { flex-shrink: 0; margin: 0; }
+}
+
+/* ============================================================
+   GUARANTEE — Premium green
+============================================================ */
+#guarantee {
+  background: linear-gradient(135deg, #0A2E10 0%, var(--green) 50%, #1A5A20 100%);
+  padding: 80px 0;
+  text-align: center;
+}
+#guarantee h2 {
+  color: var(--white);
+  margin-bottom: 16px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 600;
+}
+#guarantee p {
+  color: rgba(255,255,255,0.5);
+  font-size: 16px;
+  margin-bottom: 36px;
+}
+
+/* ============================================================
+   CONTACT
+============================================================ */
+#contact {
+  background: var(--cream-warm);
+  padding: 100px 0;
+  border-top: 1px solid var(--border);
+}
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+#contact h2 { color: var(--text); margin-bottom: 20px; }
+#contact .lead { color: var(--text-muted); margin-bottom: 48px; font-weight: 300; }
+.contact-info-item {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.contact-icon {
+  width: 40px; height: 40px;
+  border-radius: var(--radius-sm);
+  background: rgba(var(--green-rgb), 0.04);
+  border: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.contact-icon svg { width: 18px; height: 18px; color: var(--sage); }
+.contact-info-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.contact-info-val {
+  font-size: 14px;
+  color: var(--text-body);
+  font-weight: 400;
+}
+@media (max-width: 900px) { .contact-inner { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   FOOTER
+============================================================ */
+footer {
+  background: #060B07;
+  padding: 40px 0;
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.footer-logo {
+  font-family: var(--font-logo);
+  font-style: italic;
+  font-size: 20px;
+  color: rgba(255,255,255,0.3);
+}
+.footer-copy {
+  font-size: 12px;
+  color: rgba(255,255,255,0.2);
+  font-weight: 300;
+}
+.footer-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+.footer-links a {
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+  text-decoration: none;
+  font-weight: 400;
+}
+.footer-links a:hover { color: rgba(255,255,255,0.6); }
+
+/* ============================================================
+   SCROLL ANIMATIONS — subtle, no blur (premium)
+============================================================ */
+.fade-in {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo"><img src="logo updated.png" alt="LeafRise" style="height:40px;width:auto;vertical-align:middle;"></a>
+      <ul class="nav-links">
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="btn btn-primary nav-cta">Book a Call</a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="label hero-label">Cannabis Marketing Agency</div>
+        <h1 class="hero-title">
+          Cannabis<br>
+          <em>Insiders.</em><br>
+          Performance<br>Marketers.
+        </h1>
+        <p class="hero-sub">
+          Deep cannabis industry expertise, performance marketing,
+          and AI-powered systems to grow your business.
+          First results in 30 days.
+        </p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn btn-primary">Book a Free Call</a>
+          <a href="#packages" class="btn btn-outline">See Packages</a>
+        </div>
+        <div class="hero-guarantee">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L10 5.5L15 6.5L11.5 10L12.5 15L8 12.5L3.5 15L4.5 10L1 6.5L6 5.5L8 1Z" stroke="currentColor" stroke-width="1.2" fill="rgba(196,154,42,0.15)"/></svg>
+          <span><strong>30-Day Guarantee</strong> — First results or we keep working at no extra cost</span>
+        </div>
+      </div>
+
+      <!-- Orbital system — glossy cannabis buds -->
+      <div class="hero-orbital">
+        <div class="orbit orbit-1"></div>
+        <div class="orbit orbit-2"></div>
+        <div class="orbit orbit-3"></div>
+
+        <div class="orbit-center">
+          <div class="orbit-center-number">115+</div>
+          <div class="orbit-center-label">Locations Served</div>
+        </div>
+
+        <!-- Inner orbit — cannabis leaf + bud -->
+        <div class="orbit-spinner orbit-spinner-1">
+          <div class="orbit-item orbit-item--lg" style="top:50%; left:calc(50% + 132px);">
+            <svg viewBox="0 0 40 44" width="40" height="44" fill="none">
+              <path d="M20 40V22" stroke="#2E6624" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M20 6C20 6 12 2 6 6C10 8 14 12 16 16L20 10L24 16C26 12 30 8 34 6C28 2 20 6 20 6Z" fill="#4A9A30"/>
+              <path d="M20 14C20 14 14 10 9 12C12 14 15 18 17 22L20 16L23 22C25 18 28 14 31 12C26 10 20 14 20 14Z" fill="#3A8228" opacity="0.85"/>
+              <path d="M20 22C20 22 16 20 13 21C15 22 17 25 18 28L20 24L22 28C23 25 25 22 27 21C24 20 20 22 20 22Z" fill="#2E6624" opacity="0.7"/>
+            </svg>
+          </div>
+        </div>
+        <div class="orbit-spinner orbit-spinner-2">
+          <div class="orbit-item orbit-item--md" style="top:50%; left:calc(50% - 132px);">
+            <svg viewBox="0 0 32 36" width="32" height="36" fill="none">
+              <path d="M16 32V22" stroke="#2E6624" stroke-width="1.5" stroke-linecap="round"/>
+              <ellipse cx="16" cy="13" rx="8" ry="9" fill="#4A9A30" opacity="0.85"/>
+              <ellipse cx="11" cy="11" rx="5" ry="6" fill="#3A8228"/>
+              <ellipse cx="21" cy="11" rx="5" ry="6" fill="#3A8228"/>
+              <ellipse cx="16" cy="8" rx="4" ry="5.5" fill="#5AAA3A" opacity="0.75"/>
+              <ellipse cx="13" cy="6" rx="2.5" ry="3" fill="#6BBF48" opacity="0.5"/>
+              <ellipse cx="19" cy="6" rx="2.5" ry="3" fill="#6BBF48" opacity="0.5"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Middle orbit — pointed leaf + small bud + extra leaf -->
+        <div class="orbit-spinner orbit-spinner-3">
+          <div class="orbit-item orbit-item--lg" style="top:calc(50% - 187px); left:50%;">
+            <svg viewBox="0 0 36 40" width="36" height="40" fill="none">
+              <path d="M18 38V20" stroke="#2E6624" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M18 4C8 10 6 24 9 34L18 20L27 34C30 24 28 10 18 4Z" fill="#4A9A30" opacity="0.8"/>
+              <path d="M18 4L18 34" stroke="#2E6624" stroke-width="0.8" opacity="0.4"/>
+              <path d="M18 14C13 17 10 22 9 28" stroke="#2E6624" stroke-width="0.6" opacity="0.3"/>
+              <path d="M18 14C23 17 26 22 27 28" stroke="#2E6624" stroke-width="0.6" opacity="0.3"/>
+            </svg>
+          </div>
+        </div>
+        <div class="orbit-spinner orbit-spinner-4">
+          <div class="orbit-item orbit-item--md" style="top:calc(50% + 187px); left:50%;">
+            <svg viewBox="0 0 28 32" width="28" height="32" fill="none">
+              <path d="M14 28V20" stroke="#2E6624" stroke-width="1.2" stroke-linecap="round"/>
+              <ellipse cx="14" cy="12" rx="6" ry="8" fill="#4A9A30" opacity="0.8"/>
+              <ellipse cx="10" cy="10" rx="4" ry="5" fill="#3A8228" opacity="0.85"/>
+              <ellipse cx="18" cy="10" rx="4" ry="5" fill="#3A8228" opacity="0.85"/>
+              <ellipse cx="14" cy="7" rx="3" ry="4" fill="#5AAA3A" opacity="0.65"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Outer orbit — two more elements -->
+        <div class="orbit-spinner orbit-spinner-5">
+          <div class="orbit-item orbit-item--md" style="top:50%; left:calc(50% + 240px);">
+            <svg viewBox="0 0 30 34" width="30" height="34" fill="none">
+              <path d="M24 4C10 8 6 20 8 30" stroke="#2E6624" stroke-width="1" opacity="0.4" stroke-linecap="round"/>
+              <path d="M24 4C10 8 6 20 8 30C12 24 18 18 24 4Z" fill="#4A9A30" opacity="0.7"/>
+              <path d="M18 14C14 16 11 20 10 26" stroke="#2E6624" stroke-width="0.6" opacity="0.3"/>
+            </svg>
+          </div>
+        </div>
+        <div class="orbit-spinner orbit-spinner-6">
+          <div class="orbit-item orbit-item--sm" style="top:calc(50% - 240px); left:50%;">
+            <svg viewBox="0 0 22 26" width="22" height="26" fill="none">
+              <path d="M11 22V16" stroke="#2E6624" stroke-width="1" stroke-linecap="round"/>
+              <ellipse cx="11" cy="9" rx="5" ry="7" fill="#4A9A30" opacity="0.65"/>
+              <ellipse cx="8" cy="8" rx="3" ry="4" fill="#3A8228" opacity="0.6"/>
+              <ellipse cx="14" cy="8" rx="3" ry="4" fill="#3A8228" opacity="0.6"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Extra orbit items for density -->
+        <div class="orbit-spinner" style="animation: spin 45s linear infinite;">
+          <div class="orbit-item orbit-item--sm" style="top:calc(50% + 100px); left:calc(50% + 220px);">
+            <svg viewBox="0 0 20 24" width="20" height="24" fill="none">
+              <path d="M16 3C6 6 4 14 5 20C8 16 12 12 16 3Z" fill="#4A9A30" opacity="0.5"/>
+            </svg>
+          </div>
+        </div>
+        <div class="orbit-spinner" style="animation: spin 38s linear infinite reverse;">
+          <div class="orbit-item orbit-item--xs" style="top:calc(50% - 60px); left:calc(50% - 230px);">
+            <svg viewBox="0 0 14 14" width="14" height="14" fill="none">
+              <ellipse cx="7" cy="6" rx="4" ry="5" fill="#4A9A30" opacity="0.4"/>
+              <ellipse cx="5" cy="5" rx="2.5" ry="3" fill="#3A8228" opacity="0.35"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- STATS BAR — Dark -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item fade-in">
+        <div class="stat-number" data-target="9">0</div>
+        <div class="stat-label">Years of Experience</div>
+      </div>
+      <div class="stat-item fade-in">
+        <div class="stat-number">$10M+</div>
+        <div class="stat-label">Ad Spend Managed</div>
+      </div>
+      <div class="stat-item fade-in">
+        <div class="stat-number" data-target="115">0</div>
+        <div class="stat-label">Locations — US, Mexico &amp; Europe</div>
+      </div>
+      <div class="stat-item fade-in">
+        <div class="stat-number" data-target="32">0</div>
+        <div class="stat-label">Specialists In-House</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- WHY US -->
+<section id="why" class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="label">Why LeafRise</div>
+      <h2>Three Reasons We're Different</h2>
+    </div>
+    <div class="grid-3">
+      <div class="card card-1 fade-in">
+        <div class="pillar-num">01</div>
+        <h3 class="pillar-title">Cannabis Insiders</h3>
+        <div class="divider"></div>
+        <p class="pillar-text">
+          We've been inside the industry — not just marketing it.
+          Our team built and scaled 10+ retail locations across the US and Europe.
+          We understand compliance, operations, and what drives repeat purchases.
+        </p>
+      </div>
+      <div class="card card-2 fade-in">
+        <div class="pillar-num">02</div>
+        <h3 class="pillar-title">Performance Marketing</h3>
+        <div class="divider"></div>
+        <p class="pillar-text">
+          Most agencies run ads. We build revenue systems.
+          8+ years scaling businesses with budgets from $1K to $10M+ per year.
+          Every system built around LTV, CAC, ROAS — and profitable growth.
+        </p>
+      </div>
+      <div class="card card-3 fade-in">
+        <div class="pillar-num">03</div>
+        <h3 class="pillar-title">Intelligent Growth</h3>
+        <div class="divider divider-amber"></div>
+        <p class="pillar-text">
+          AI handles the speed. Our team handles the strategy.
+          We integrate AI across content, automation, and campaign optimization.
+          No results in 30 days — we keep working at no extra cost.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- QUIZ -->
+<section id="quiz">
+  <div class="container">
+    <div class="section-header fade-in" style="margin-bottom:40px;">
+      <div class="label">Find Your Fit</div>
+      <h2>Not Sure Which Package?</h2>
+      <p class="lead">Answer four questions — we'll recommend the right one.</p>
+    </div>
+    <div class="quiz-wrapper fade-in" id="quizWidget">
+      <div class="quiz-progress" id="quizProgress" style="width:25%"></div>
+
+      <div class="quiz-step" data-step="1">
+        <div class="quiz-step-label">Step 1 of 4</div>
+        <div class="quiz-question">What type of cannabis business do you run?</div>
+        <div class="quiz-options">
+          <div class="quiz-option" data-value="dispensary">
+            <div class="quiz-option-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="8" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 8V6a5 5 0 0110 0v2" stroke="currentColor" stroke-width="1.5"/></svg></div>
+            Dispensary
+          </div>
+          <div class="quiz-option" data-value="hemp">
+            <div class="quiz-option-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M12 8c-4-2-8 0-8 4s4 4 8 2M12 8c4-2 8 0 8 4s-4 4-8 2" stroke="currentColor" stroke-width="1.5"/></svg></div>
+            Hemp Shop
+          </div>
+          <div class="quiz-option" data-value="cbd">
+            <div class="quiz-option-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            CBD &amp; Wellness
+          </div>
+          <div class="quiz-option" data-value="other">
+            <div class="quiz-option-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M9 12h6M12 9v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+            Other
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-step quiz-hidden" data-step="2">
+        <div class="quiz-step-label">Step 2 of 4</div>
+        <div class="quiz-question">What's your biggest challenge right now?</div>
+        <div class="quiz-options">
+          <div class="quiz-option" data-value="acquisition">Getting new customers</div>
+          <div class="quiz-option" data-value="retention">Keeping them coming back</div>
+          <div class="quiz-option" data-value="awareness">Brand awareness</div>
+          <div class="quiz-option" data-value="competition">Standing out from competitors</div>
+        </div>
+        <div class="quiz-nav"><button class="quiz-back" onclick="quizBack()">&larr; Back</button><div></div></div>
+      </div>
+
+      <div class="quiz-step quiz-hidden" data-step="3">
+        <div class="quiz-step-label">Step 3 of 4</div>
+        <div class="quiz-question">How long have you been in business?</div>
+        <div class="quiz-options">
+          <div class="quiz-option" data-value="starting">Just starting</div>
+          <div class="quiz-option" data-value="under1">Under 1 year</div>
+          <div class="quiz-option" data-value="1to3">1&ndash;3 years</div>
+          <div class="quiz-option" data-value="3plus">3+ years</div>
+        </div>
+        <div class="quiz-nav"><button class="quiz-back" onclick="quizBack()">&larr; Back</button><div></div></div>
+      </div>
+
+      <div class="quiz-step quiz-hidden" data-step="4">
+        <div class="quiz-step-label">Step 4 of 4</div>
+        <div class="quiz-question">What's your monthly marketing budget?</div>
+        <div class="quiz-options">
+          <div class="quiz-option" data-value="1k">$1K &ndash; $3K</div>
+          <div class="quiz-option" data-value="3k">$3K &ndash; $7K</div>
+          <div class="quiz-option" data-value="7k">$7K &ndash; $15K</div>
+          <div class="quiz-option" data-value="15k">$15K+</div>
+        </div>
+        <div class="quiz-nav"><button class="quiz-back" onclick="quizBack()">&larr; Back</button><div></div></div>
+      </div>
+
+      <div class="quiz-step quiz-hidden" data-step="result">
+        <div class="quiz-result">
+          <div class="quiz-result-badge">Your Recommended Package</div>
+          <div class="quiz-result-package" id="quizResultName">LeafRise Scale</div>
+          <p class="quiz-result-reason" id="quizResultReason">Based on your answers, the Scale package will give you the full growth system you need.</p>
+          <a href="#contact" class="btn btn-primary">Book a Free Call</a>
+          <a href="#packages" class="btn btn-outline" style="margin-top:12px;">Compare All Packages</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PACKAGES -->
+<section id="packages" class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="label">Pricing</div>
+      <h2>Choose Your Growth Path</h2>
+      <p class="lead">Three packages built around your stage of growth.</p>
+    </div>
+    <div class="pkg-grid">
+      <div class="pkg-card fade-in">
+        <div class="pkg-header">
+          <div class="pkg-name">LeafRise Launch</div>
+          <div class="pkg-sub">Your <strong style="color:var(--text);font-weight:600;">starting point</strong> — built for cannabis businesses that want real results fast.</div>
+        </div>
+        <div class="pkg-desc">
+          Brand identity, sales funnel, performance campaigns on Google and Meta,
+          social media management, and a landing page engineered for conversion.
+        </div>
+        <div class="pkg-services">
+          <div class="pkg-services-title">What's Included</div>
+          <div class="pkg-service-item">Branding &amp; Identity</div>
+          <div class="pkg-service-item">Sales Funnel</div>
+          <div class="pkg-service-item">Landing Page + CRO</div>
+          <div class="pkg-service-item">SMM — Instagram &amp; Facebook</div>
+          <div class="pkg-service-item">Meta Ads</div>
+          <div class="pkg-service-item">Google Ads</div>
+        </div>
+        <div class="pkg-cta"><a href="#contact" class="btn btn-primary">Get Started</a></div>
+      </div>
+
+      <div class="pkg-card pkg-card-featured fade-in">
+        <div class="pkg-header">
+          <div class="pkg-badge">Most Popular</div>
+          <div class="pkg-name">LeafRise Scale</div>
+          <div class="pkg-sub">Everything in Launch — plus a complete <strong style="color:var(--text);font-weight:600;">growth system</strong>.</div>
+        </div>
+        <div class="pkg-desc">
+          A compounding engine — attracting new customers, nurturing existing ones,
+          and building brand authority that outlasts any single campaign.
+        </div>
+        <div class="pkg-services">
+          <div class="pkg-services-title">Everything in Launch, plus</div>
+          <div class="pkg-service-item">Marketing Strategy</div>
+          <div class="pkg-service-item">Competitor Analysis Report</div>
+          <div class="pkg-service-item">Analytics + KPI Dashboard</div>
+          <div class="pkg-service-item">Content Production (Photo &amp; Video)</div>
+          <div class="pkg-service-item">Influencer Marketing</div>
+          <div class="pkg-service-item">Email Marketing</div>
+        </div>
+        <div class="pkg-cta"><a href="#contact" class="btn btn-primary">Get Started</a></div>
+      </div>
+
+      <div class="pkg-card fade-in">
+        <div class="pkg-header">
+          <div class="pkg-name">LeafRise Dominate</div>
+          <div class="pkg-sub">Everything in Scale — the <strong style="color:var(--text);font-weight:600;">full arsenal</strong> for market ownership.</div>
+        </div>
+        <div class="pkg-desc">
+          For businesses ready to own their market. Full website, AI systems,
+          SEO, and next-gen AI search optimization.
+        </div>
+        <div class="pkg-services">
+          <div class="pkg-services-title">Everything in Scale, plus</div>
+          <div class="pkg-service-item">Full Website + CRO</div>
+          <div class="pkg-service-item">AI Pre-Sale System + AI Budtender</div>
+          <div class="pkg-service-item">SEO — Local &amp; Organic</div>
+          <div class="pkg-service-item">AI Search / GEO (ChatGPT, Perplexity)</div>
+        </div>
+        <div class="pkg-cta"><a href="#contact" class="btn btn-primary">Get Started</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PROCESS -->
+<section id="process" class="section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="label">Our Process</div>
+      <h2>How We Work</h2>
+      <p class="lead">Five steps. Zero guesswork. Results you can track.</p>
+    </div>
+    <div class="process-track">
+      <div class="process-step fade-in"><div class="process-dot">1</div><div><div class="process-step-title">Discovery Call</div><div class="process-step-desc">30 minutes. We learn your business, goals, and market — and tell you exactly what we'd do.</div></div></div>
+      <div class="process-step fade-in"><div class="process-dot">2</div><div><div class="process-step-title">Audit &amp; Strategy</div><div class="process-step-desc">Deep dive into your current marketing, competitors, and opportunities. We build your custom growth roadmap.</div></div></div>
+      <div class="process-step fade-in"><div class="process-dot">3</div><div><div class="process-step-title">KPI Agreement</div><div class="process-step-desc">Written into the contract before we start. You know exactly what success looks like.</div></div></div>
+      <div class="process-step fade-in"><div class="process-dot">4</div><div><div class="process-step-title">Build &amp; Launch</div><div class="process-step-desc">Brand, funnel, campaigns, and dashboard go live in weeks 1-2. Fast. No waiting.</div></div></div>
+      <div class="process-step fade-in"><div class="process-dot">5</div><div><div class="process-step-title">Results &amp; System</div><div class="process-step-desc">First KPIs tracked by day 30. Full compounding growth engine by month 3.</div></div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- GUARANTEE -->
+<section id="guarantee">
+  <div class="container">
+    <div class="label" style="color:rgba(255,255,255,0.35);text-align:center;margin-bottom:24px;">Our Promise</div>
+    <h2>If we don't deliver first results<br>in 30 days — we keep working<br>at no extra cost.</h2>
+    <p>No excuses. No fine print. No risk for you.</p>
+    <a href="#contact" class="btn btn-white">Book Your Free Discovery Call</a>
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div>
+        <div class="label" style="margin-bottom:20px;">Get In Touch</div>
+        <h2>Ready to grow<br>your cannabis<br>business?</h2>
+        <p class="lead">Book a free 30-minute discovery call.<br>Just a clear plan for your growth.</p>
+        <br>
+        <div class="contact-info-item">
+          <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="1.5"/></svg></div>
+          <div><div class="contact-info-label">Email</div><div class="contact-info-val">hello@leafrise.com</div></div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg></div>
+          <div><div class="contact-info-label">Instagram</div><div class="contact-info-val"><a href="#" style="color:var(--text-body);text-decoration:none;border-bottom:1px solid var(--border);">@leafrise</a></div></div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z" stroke="currentColor" stroke-width="1.5"/><rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="1.5"/><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.5"/></svg></div>
+          <div><div class="contact-info-label">LinkedIn</div><div class="contact-info-val"><a href="#" style="color:var(--text-body);text-decoration:none;border-bottom:1px solid var(--border);">LeafRise Agency</a></div></div>
+        </div>
+        <br>
+        <a href="#contact" class="btn btn-primary">Book Your Discovery Call</a>
+      </div>
+      <!-- Right: What to expect -->
+      <div>
+        <div style="background:var(--white);border:1px solid var(--border-light);border-radius:var(--radius);padding:36px;">
+          <div style="font-family:var(--font-h);font-size:16px;font-weight:600;color:var(--text);margin-bottom:24px;">What to expect on the call</div>
+          <div style="display:flex;gap:14px;margin-bottom:20px;align-items:flex-start;">
+            <div style="width:28px;height:28px;border-radius:50%;background:rgba(var(--green-rgb),0.06);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--font-h);font-size:12px;font-weight:700;color:var(--green);">1</div>
+            <div><div style="font-size:14px;font-weight:500;color:var(--text);margin-bottom:2px;">We learn your business</div><div style="font-size:13px;color:var(--text-muted);font-weight:300;">Goals, market, current challenges — everything we need to understand your situation.</div></div>
+          </div>
+          <div style="display:flex;gap:14px;margin-bottom:20px;align-items:flex-start;">
+            <div style="width:28px;height:28px;border-radius:50%;background:rgba(var(--green-rgb),0.06);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--font-h);font-size:12px;font-weight:700;color:var(--green);">2</div>
+            <div><div style="font-size:14px;font-weight:500;color:var(--text);margin-bottom:2px;">We show you the plan</div><div style="font-size:13px;color:var(--text-muted);font-weight:300;">Exactly what we'd do, which package fits, and what results to expect.</div></div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:28px;height:28px;border-radius:50%;background:rgba(var(--green-rgb),0.06);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--font-h);font-size:12px;font-weight:700;color:var(--green);">3</div>
+            <div><div style="font-size:14px;font-weight:500;color:var(--text);margin-bottom:2px;">You leave with a clear picture</div><div style="font-size:13px;color:var(--text-muted);font-weight:300;">Whether we work together or not — you'll walk away with actionable insights for your business.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">leafRise</div>
+      <div class="footer-copy">&copy; 2025 LeafRise Marketing Agency. All rights reserved.</div>
+      <ul class="footer-links">
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+// Nav scroll
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  nav.style.boxShadow = window.scrollY > 20 ? '0 1px 16px rgba(0,0,0,0.04)' : 'none';
+});
+
+// Fade-in on scroll
+const fadeObs = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 60);
+      fadeObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
+
+// Counter animation
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const target = parseInt(el.dataset.target);
+    if (!target) return;
+    let current = 0;
+    const step = target / 40;
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= target) { el.textContent = target + '+'; clearInterval(timer); }
+      else { el.textContent = Math.floor(current) + '+'; }
+    }, 30);
+    counterObs.unobserve(el);
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.stat-number[data-target]').forEach(el => counterObs.observe(el));
+
+// Quiz
+let quizStep = 1;
+const quizAnswers = {};
+
+document.querySelectorAll('.quiz-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    opt.parentElement.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+    quizAnswers[quizStep] = opt.dataset.value;
+    setTimeout(() => {
+      if (quizStep < 4) { quizStep++; showQuizStep(quizStep); }
+      else { showQuizResult(); }
+    }, 250);
+  });
+});
+
+function showQuizStep(step) {
+  document.querySelectorAll('.quiz-step').forEach(s => s.classList.add('quiz-hidden'));
+  document.querySelector(`.quiz-step[data-step="${step}"]`).classList.remove('quiz-hidden');
+  document.getElementById('quizProgress').style.width = (step * 25) + '%';
+}
+
+function quizBack() {
+  if (quizStep > 1) { quizStep--; showQuizStep(quizStep); }
+}
+
+function showQuizResult() {
+  const budget = quizAnswers[4], age = quizAnswers[3], challenge = quizAnswers[2];
+  let pkg, reason;
+  if (budget === '15k' || (budget === '7k' && age === '3plus')) {
+    pkg = 'LeafRise Dominate';
+    reason = 'You have the budget and experience to own your market. Dominate gives you the full arsenal — SEO, AI systems, and everything in Scale.';
+  } else if (budget === '7k' || budget === '3k' || challenge === 'retention' || challenge === 'competition') {
+    pkg = 'LeafRise Scale';
+    reason = 'The Scale package gives you the full growth system — acquisition, retention, and brand authority working together.';
+  } else {
+    pkg = 'LeafRise Launch';
+    reason = 'Launch is your perfect starting point — strong brand, conversion-ready funnel, and campaigns running from day one.';
+  }
+  document.getElementById('quizResultName').textContent = pkg;
+  document.getElementById('quizResultReason').textContent = reason;
+  document.querySelectorAll('.quiz-step').forEach(s => s.classList.add('quiz-hidden'));
+  document.querySelector('.quiz-step[data-step="result"]').classList.remove('quiz-hidden');
+  document.getElementById('quizProgress').style.width = '100%';
+}
+</script>
+
+</body>
+</html>
