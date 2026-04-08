@@ -241,6 +241,7 @@ nav {
 }
 
 /* ── Orbital System — Glossy, tech ── */
+/* ── Logo-shaped orbital with moving dots ── */
 .hero-orbital {
   position: relative;
   width: 100%;
@@ -250,21 +251,21 @@ nav {
   opacity: 0;
   animation: fadeUp 1s ease forwards 0.5s;
 }
+.hero-orbital svg.logo-path { width: 100%; height: 100%; }
 
-.orbit {
-  position: absolute;
-  border: 1px solid rgba(var(--green-rgb), 0.07);
-  border-radius: 50%;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
+/* Dots moving along logo paths */
+.orbit-dot {
+  r: 5;
+  fill: rgba(var(--green-rgb), 0.5);
 }
-.orbit-1 { width: 55%; height: 55%; }
-.orbit-2 { width: 78%; height: 78%; }
-.orbit-3 { width: 100%; height: 100%; border-style: dashed; border-color: rgba(var(--green-rgb), 0.05); }
+.orbit-dot--lg { r: 7; fill: rgba(var(--green-rgb), 0.4); }
+.orbit-dot--sm { r: 3.5; fill: rgba(var(--sage-rgb), 0.5); }
+.orbit-dot--amber { r: 5; fill: rgba(var(--amber-rgb), 0.6); }
+.orbit-dot--light { r: 4; fill: rgba(118, 156, 26, 0.45); }
 
 .orbit-center {
   position: absolute;
-  top: 50%; left: 50%;
+  top: 46%; left: 46%;
   transform: translate(-50%, -50%);
   text-align: center;
   z-index: 5;
@@ -283,44 +284,6 @@ nav {
   font-weight: 400;
   margin-top: 6px;
   letter-spacing: 0.5px;
-}
-
-/* Orbital items — glossy cannabis buds/leaves as SVG circles */
-.orbit-spinner {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
-}
-.orbit-item {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 3;
-  /* No background, no circle — just the SVG floating freely */
-  background: none;
-  border: none;
-  box-shadow: none;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.1));
-}
-.orbit-item svg { display: block; }
-
-.orbit-item--lg { width: 40px; height: 40px; margin: -20px 0 0 -20px; }
-.orbit-item--md { width: 32px; height: 32px; margin: -16px 0 0 -16px; }
-.orbit-item--sm { width: 24px; height: 24px; margin: -12px 0 0 -12px; opacity: 0.6; }
-.orbit-item--xs { width: 18px; height: 18px; margin: -9px 0 0 -9px; opacity: 0.4; }
-
-.orbit-spinner-1 { animation: spin 25s linear infinite; }
-.orbit-spinner-2 { animation: spin 25s linear infinite reverse; }
-.orbit-spinner-3 { animation: spin 35s linear infinite; }
-.orbit-spinner-4 { animation: spin 35s linear infinite reverse; }
-.orbit-spinner-5 { animation: spin 30s linear infinite; }
-.orbit-spinner-6 { animation: spin 40s linear infinite reverse; }
-
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
 }
 
 @media (max-width: 900px) {
@@ -683,14 +646,7 @@ nav {
   grid-template-columns: repeat(5, 1fr);
   position: relative;
 }
-.process-track::before {
-  content: '';
-  position: absolute;
-  top: 24px; left: 10%; right: 10%;
-  height: 1px;
-  background: linear-gradient(90deg, var(--green), var(--sage), var(--amber));
-  opacity: 0.3;
-}
+.process-track::before { display: none; /* replaced by JS-driven line */ }
 .process-step {
   text-align: center;
   padding: 0 12px;
@@ -847,8 +803,10 @@ footer {
 .footer-links a:hover { color: rgba(255,255,255,0.6); }
 
 /* ============================================================
-   SCROLL ANIMATIONS — subtle, no blur (premium)
+   SCROLL ANIMATIONS
 ============================================================ */
+
+/* Basic fade-in */
 .fade-in {
   opacity: 0;
   transform: translateY(16px);
@@ -857,6 +815,86 @@ footer {
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Staggered reveal — set via JS with custom delay */
+.stagger { transition-delay: var(--delay, 0s); }
+
+/* ── Card Stacking ── */
+.stack-section {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.stack-section + .stack-section { z-index: 3; }
+.stack-section + .stack-section + .stack-section { z-index: 4; }
+.stack-section + .stack-section + .stack-section + .stack-section { z-index: 5; }
+
+/* ── Text Color Fill (Guarantee) ── */
+.text-fill-word {
+  color: rgba(255,255,255,0.15);
+  transition: color 0.4s ease;
+  display: inline-block;
+  margin-right: 0.25em;
+}
+.text-fill-word.filled {
+  color: var(--white);
+}
+
+/* ── Process Timeline Draw ── */
+.process-line-bg {
+  position: absolute;
+  top: 24px; left: 10%; right: 10%;
+  height: 1px;
+  background: rgba(var(--green-rgb), 0.1);
+  z-index: 0;
+}
+.process-line-fill {
+  position: absolute;
+  top: 24px; left: 10%;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--green), var(--sage), var(--amber));
+  z-index: 0;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.process-line-fill.drawn { width: 80%; }
+
+.process-dot {
+  transition: all 0.4s ease;
+}
+.process-dot.active {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--white);
+  box-shadow: 0 0 0 5px var(--white), 0 0 0 7px rgba(var(--green-rgb), 0.15);
+}
+
+/* ── Quiz Micro-interactions ── */
+.quiz-step {
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.quiz-step.quiz-entering {
+  opacity: 0;
+  transform: translateX(30px);
+}
+.quiz-step.quiz-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.quiz-option {
+  transition: all 0.2s ease, transform 0.15s ease;
+}
+.quiz-option:active {
+  transform: scale(0.97);
+}
+.quiz-option.selected {
+  animation: optionPulse 0.3s ease;
+}
+@keyframes optionPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); box-shadow: 0 0 0 4px rgba(var(--green-rgb), 0.12); }
+  100% { transform: scale(1); }
 }
 </style>
 </head>
@@ -905,103 +943,72 @@ footer {
         </div>
       </div>
 
-      <!-- Orbital system — glossy cannabis buds -->
+      <!-- Orbital system — logo shape with moving dots -->
       <div class="hero-orbital">
-        <div class="orbit orbit-1"></div>
-        <div class="orbit orbit-2"></div>
-        <div class="orbit orbit-3"></div>
-
         <div class="orbit-center">
           <div class="orbit-center-number">115+</div>
           <div class="orbit-center-label">Locations Served</div>
         </div>
 
-        <!-- Inner orbit — cannabis leaf + bud -->
-        <div class="orbit-spinner orbit-spinner-1">
-          <div class="orbit-item orbit-item--lg" style="top:50%; left:calc(50% + 132px);">
-            <svg viewBox="0 0 40 44" width="40" height="44" fill="none">
-              <path d="M20 40V22" stroke="#2E6624" stroke-width="1.8" stroke-linecap="round"/>
-              <path d="M20 6C20 6 12 2 6 6C10 8 14 12 16 16L20 10L24 16C26 12 30 8 34 6C28 2 20 6 20 6Z" fill="#4A9A30"/>
-              <path d="M20 14C20 14 14 10 9 12C12 14 15 18 17 22L20 16L23 22C25 18 28 14 31 12C26 10 20 14 20 14Z" fill="#3A8228" opacity="0.85"/>
-              <path d="M20 22C20 22 16 20 13 21C15 22 17 25 18 28L20 24L22 28C23 25 25 22 27 21C24 20 20 22 20 22Z" fill="#2E6624" opacity="0.7"/>
-            </svg>
-          </div>
-        </div>
-        <div class="orbit-spinner orbit-spinner-2">
-          <div class="orbit-item orbit-item--md" style="top:50%; left:calc(50% - 132px);">
-            <svg viewBox="0 0 32 36" width="32" height="36" fill="none">
-              <path d="M16 32V22" stroke="#2E6624" stroke-width="1.5" stroke-linecap="round"/>
-              <ellipse cx="16" cy="13" rx="8" ry="9" fill="#4A9A30" opacity="0.85"/>
-              <ellipse cx="11" cy="11" rx="5" ry="6" fill="#3A8228"/>
-              <ellipse cx="21" cy="11" rx="5" ry="6" fill="#3A8228"/>
-              <ellipse cx="16" cy="8" rx="4" ry="5.5" fill="#5AAA3A" opacity="0.75"/>
-              <ellipse cx="13" cy="6" rx="2.5" ry="3" fill="#6BBF48" opacity="0.5"/>
-              <ellipse cx="19" cy="6" rx="2.5" ry="3" fill="#6BBF48" opacity="0.5"/>
-            </svg>
-          </div>
-        </div>
+        <svg class="logo-path" viewBox="0 0 480 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Logo leaf paths (semi-transparent) -->
+          <!-- Left leaf -->
+          <path id="leaf1" d="M180 360C120 320 80 260 100 180C130 200 160 230 200 240C190 200 180 140 210 80C230 130 250 190 240 240C280 230 320 200 350 180C370 260 330 320 280 360"
+            stroke="rgba(14,77,20,0.07)" stroke-width="1.5" fill="none"/>
+          <!-- Right leaf (smaller) -->
+          <path id="leaf2" d="M240 320C210 290 190 250 200 190C220 205 240 220 260 225C255 200 250 170 265 130C275 165 285 200 280 225C300 220 320 205 340 190C350 250 330 290 300 320"
+            stroke="rgba(14,77,20,0.06)" stroke-width="1.2" fill="none"/>
+          <!-- Bottom leaf -->
+          <path id="leaf3" d="M160 400C140 370 150 320 190 280C200 310 220 330 250 340C230 330 200 310 190 280C220 290 260 310 290 340C270 330 250 350 230 380"
+            stroke="rgba(14,77,20,0.05)" stroke-width="1" fill="none"/>
+          <!-- Arrow (going up-right) -->
+          <path id="arrow" d="M300 300C320 260 350 200 380 160L400 120"
+            stroke="rgba(196,154,42,0.1)" stroke-width="1.5" fill="none"/>
+          <path d="M390 120L400 120L400 130" stroke="rgba(196,154,42,0.08)" stroke-width="1.2" fill="none"/>
 
-        <!-- Middle orbit — pointed leaf + small bud + extra leaf -->
-        <div class="orbit-spinner orbit-spinner-3">
-          <div class="orbit-item orbit-item--lg" style="top:calc(50% - 187px); left:50%;">
-            <svg viewBox="0 0 36 40" width="36" height="40" fill="none">
-              <path d="M18 38V20" stroke="#2E6624" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="M18 4C8 10 6 24 9 34L18 20L27 34C30 24 28 10 18 4Z" fill="#4A9A30" opacity="0.8"/>
-              <path d="M18 4L18 34" stroke="#2E6624" stroke-width="0.8" opacity="0.4"/>
-              <path d="M18 14C13 17 10 22 9 28" stroke="#2E6624" stroke-width="0.6" opacity="0.3"/>
-              <path d="M18 14C23 17 26 22 27 28" stroke="#2E6624" stroke-width="0.6" opacity="0.3"/>
-            </svg>
-          </div>
-        </div>
-        <div class="orbit-spinner orbit-spinner-4">
-          <div class="orbit-item orbit-item--md" style="top:calc(50% + 187px); left:50%;">
-            <svg viewBox="0 0 28 32" width="28" height="32" fill="none">
-              <path d="M14 28V20" stroke="#2E6624" stroke-width="1.2" stroke-linecap="round"/>
-              <ellipse cx="14" cy="12" rx="6" ry="8" fill="#4A9A30" opacity="0.8"/>
-              <ellipse cx="10" cy="10" rx="4" ry="5" fill="#3A8228" opacity="0.85"/>
-              <ellipse cx="18" cy="10" rx="4" ry="5" fill="#3A8228" opacity="0.85"/>
-              <ellipse cx="14" cy="7" rx="3" ry="4" fill="#5AAA3A" opacity="0.65"/>
-            </svg>
-          </div>
-        </div>
+          <!-- Moving dots on leaf1 -->
+          <circle class="orbit-dot" r="5">
+            <animateMotion dur="12s" repeatCount="indefinite" rotate="auto">
+              <mpath href="#leaf1"/>
+            </animateMotion>
+          </circle>
+          <circle class="orbit-dot--sm" r="3.5">
+            <animateMotion dur="12s" repeatCount="indefinite" rotate="auto" begin="-4s">
+              <mpath href="#leaf1"/>
+            </animateMotion>
+          </circle>
+          <circle class="orbit-dot--light" r="4">
+            <animateMotion dur="12s" repeatCount="indefinite" rotate="auto" begin="-8s">
+              <mpath href="#leaf1"/>
+            </animateMotion>
+          </circle>
 
-        <!-- Outer orbit — two more elements -->
-        <div class="orbit-spinner orbit-spinner-5">
-          <div class="orbit-item orbit-item--md" style="top:50%; left:calc(50% + 240px);">
-            <svg viewBox="0 0 30 34" width="30" height="34" fill="none">
-              <path d="M24 4C10 8 6 20 8 30" stroke="#2E6624" stroke-width="1" opacity="0.4" stroke-linecap="round"/>
-              <path d="M24 4C10 8 6 20 8 30C12 24 18 18 24 4Z" fill="#4A9A30" opacity="0.7"/>
-              <path d="M18 14C14 16 11 20 10 26" stroke="#2E6624" stroke-width="0.6" opacity="0.3"/>
-            </svg>
-          </div>
-        </div>
-        <div class="orbit-spinner orbit-spinner-6">
-          <div class="orbit-item orbit-item--sm" style="top:calc(50% - 240px); left:50%;">
-            <svg viewBox="0 0 22 26" width="22" height="26" fill="none">
-              <path d="M11 22V16" stroke="#2E6624" stroke-width="1" stroke-linecap="round"/>
-              <ellipse cx="11" cy="9" rx="5" ry="7" fill="#4A9A30" opacity="0.65"/>
-              <ellipse cx="8" cy="8" rx="3" ry="4" fill="#3A8228" opacity="0.6"/>
-              <ellipse cx="14" cy="8" rx="3" ry="4" fill="#3A8228" opacity="0.6"/>
-            </svg>
-          </div>
-        </div>
+          <!-- Moving dots on leaf2 -->
+          <circle class="orbit-dot" r="4.5" fill="rgba(90,122,82,0.45)">
+            <animateMotion dur="10s" repeatCount="indefinite" rotate="auto">
+              <mpath href="#leaf2"/>
+            </animateMotion>
+          </circle>
+          <circle class="orbit-dot--sm" r="3">
+            <animateMotion dur="10s" repeatCount="indefinite" rotate="auto" begin="-5s">
+              <mpath href="#leaf2"/>
+            </animateMotion>
+          </circle>
 
-        <!-- Extra orbit items for density -->
-        <div class="orbit-spinner" style="animation: spin 45s linear infinite;">
-          <div class="orbit-item orbit-item--sm" style="top:calc(50% + 100px); left:calc(50% + 220px);">
-            <svg viewBox="0 0 20 24" width="20" height="24" fill="none">
-              <path d="M16 3C6 6 4 14 5 20C8 16 12 12 16 3Z" fill="#4A9A30" opacity="0.5"/>
-            </svg>
-          </div>
-        </div>
-        <div class="orbit-spinner" style="animation: spin 38s linear infinite reverse;">
-          <div class="orbit-item orbit-item--xs" style="top:calc(50% - 60px); left:calc(50% - 230px);">
-            <svg viewBox="0 0 14 14" width="14" height="14" fill="none">
-              <ellipse cx="7" cy="6" rx="4" ry="5" fill="#4A9A30" opacity="0.4"/>
-              <ellipse cx="5" cy="5" rx="2.5" ry="3" fill="#3A8228" opacity="0.35"/>
-            </svg>
-          </div>
-        </div>
+          <!-- Moving dot on leaf3 -->
+          <circle class="orbit-dot--lg" r="6" fill="rgba(14,77,20,0.3)">
+            <animateMotion dur="14s" repeatCount="indefinite" rotate="auto" begin="-2s">
+              <mpath href="#leaf3"/>
+            </animateMotion>
+          </circle>
+
+          <!-- Amber dot on arrow -->
+          <circle class="orbit-dot--amber" r="5">
+            <animateMotion dur="8s" repeatCount="indefinite" rotate="auto">
+              <mpath href="#arrow"/>
+            </animateMotion>
+          </circle>
+        </svg>
       </div>
     </div>
   </div>
@@ -1009,7 +1016,7 @@ footer {
 
 
 <!-- STATS BAR — Dark -->
-<section id="stats">
+<section id="stats" class="stack-section">
   <div class="container">
     <div class="stats-grid">
       <div class="stat-item fade-in">
@@ -1034,7 +1041,7 @@ footer {
 
 
 <!-- WHY US -->
-<section id="why" class="section">
+<section id="why" class="section stack-section">
   <div class="container">
     <div class="section-header fade-in">
       <div class="label">Why LeafRise</div>
@@ -1077,7 +1084,7 @@ footer {
 
 
 <!-- QUIZ -->
-<section id="quiz">
+<section id="quiz" class="stack-section">
   <div class="container">
     <div class="section-header fade-in" style="margin-bottom:40px;">
       <div class="label">Find Your Fit</div>
@@ -1243,7 +1250,9 @@ footer {
       <h2>How We Work</h2>
       <p class="lead">Five steps. Zero guesswork. Results you can track.</p>
     </div>
-    <div class="process-track">
+    <div class="process-track" id="processTrack">
+      <div class="process-line-bg"></div>
+      <div class="process-line-fill" id="processLine"></div>
       <div class="process-step fade-in"><div class="process-dot">1</div><div><div class="process-step-title">Discovery Call</div><div class="process-step-desc">30 minutes. We learn your business, goals, and market — and tell you exactly what we'd do.</div></div></div>
       <div class="process-step fade-in"><div class="process-dot">2</div><div><div class="process-step-title">Audit &amp; Strategy</div><div class="process-step-desc">Deep dive into your current marketing, competitors, and opportunities. We build your custom growth roadmap.</div></div></div>
       <div class="process-step fade-in"><div class="process-dot">3</div><div><div class="process-step-title">KPI Agreement</div><div class="process-step-desc">Written into the contract before we start. You know exactly what success looks like.</div></div></div>
@@ -1258,7 +1267,7 @@ footer {
 <section id="guarantee">
   <div class="container">
     <div class="label" style="color:rgba(255,255,255,0.35);text-align:center;margin-bottom:24px;">Our Promise</div>
-    <h2>If we don't deliver first results<br>in 30 days — we keep working<br>at no extra cost.</h2>
+    <h2 id="guaranteeText"><span class="text-fill-word">If</span><span class="text-fill-word">we</span><span class="text-fill-word">don't</span><span class="text-fill-word">deliver</span><span class="text-fill-word">first</span><span class="text-fill-word">results</span><br><span class="text-fill-word">in</span><span class="text-fill-word">30</span><span class="text-fill-word">days</span><span class="text-fill-word">—</span><span class="text-fill-word">we</span><span class="text-fill-word">keep</span><span class="text-fill-word">working</span><br><span class="text-fill-word">at</span><span class="text-fill-word">no</span><span class="text-fill-word">extra</span><span class="text-fill-word">cost.</span></h2>
     <p>No excuses. No fine print. No risk for you.</p>
     <a href="#contact" class="btn btn-white">Book Your Free Discovery Call</a>
   </div>
@@ -1329,24 +1338,25 @@ footer {
 
 
 <script>
-// Nav scroll
+// ── 1. Nav scroll shadow ──
 window.addEventListener('scroll', () => {
   const nav = document.getElementById('navbar');
   nav.style.boxShadow = window.scrollY > 20 ? '0 1px 16px rgba(0,0,0,0.04)' : 'none';
 });
 
-// Fade-in on scroll
+// ── 2. Staggered fade-in on scroll ──
 const fadeObs = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), i * 60);
-      fadeObs.unobserve(entry.target);
-    }
+  const visible = entries.filter(e => e.isIntersecting);
+  visible.forEach((entry, i) => {
+    entry.target.style.setProperty('--delay', `${i * 0.12}s`);
+    entry.target.classList.add('stagger');
+    setTimeout(() => entry.target.classList.add('visible'), i * 120);
+    fadeObs.unobserve(entry.target);
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.08 });
 document.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
 
-// Counter animation
+// ── 3. Counter animation ──
 const counterObs = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (!entry.isIntersecting) return;
@@ -1365,7 +1375,38 @@ const counterObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 document.querySelectorAll('.stat-number[data-target]').forEach(el => counterObs.observe(el));
 
-// Quiz
+// ── 4. Process timeline line draw + dot activation ──
+const processObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const line = document.getElementById('processLine');
+    if (line) line.classList.add('drawn');
+    // Activate dots sequentially
+    const dots = document.querySelectorAll('.process-dot');
+    dots.forEach((dot, i) => {
+      setTimeout(() => dot.classList.add('active'), 300 + i * 250);
+    });
+    processObs.unobserve(entry.target);
+  });
+}, { threshold: 0.3 });
+const processTrack = document.getElementById('processTrack');
+if (processTrack) processObs.observe(processTrack);
+
+// ── 5. Guarantee text color fill ──
+const guaranteeObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const words = entry.target.querySelectorAll('.text-fill-word');
+    words.forEach((word, i) => {
+      setTimeout(() => word.classList.add('filled'), i * 80);
+    });
+    guaranteeObs.unobserve(entry.target);
+  });
+}, { threshold: 0.4 });
+const guaranteeText = document.getElementById('guaranteeText');
+if (guaranteeText) guaranteeObs.observe(guaranteeText);
+
+// ── 6. Quiz with slide transitions ──
 let quizStep = 1;
 const quizAnswers = {};
 
@@ -1377,13 +1418,34 @@ document.querySelectorAll('.quiz-option').forEach(opt => {
     setTimeout(() => {
       if (quizStep < 4) { quizStep++; showQuizStep(quizStep); }
       else { showQuizResult(); }
-    }, 250);
+    }, 300);
   });
 });
 
 function showQuizStep(step) {
-  document.querySelectorAll('.quiz-step').forEach(s => s.classList.add('quiz-hidden'));
-  document.querySelector(`.quiz-step[data-step="${step}"]`).classList.remove('quiz-hidden');
+  // Hide current with fade
+  const current = document.querySelector('.quiz-step:not(.quiz-hidden)');
+  if (current) {
+    current.style.opacity = '0';
+    current.style.transform = 'translateX(-30px)';
+    setTimeout(() => {
+      current.classList.add('quiz-hidden');
+      current.style.opacity = '';
+      current.style.transform = '';
+      // Show next with slide in
+      const next = document.querySelector(`.quiz-step[data-step="${step}"]`);
+      if (next) {
+        next.classList.remove('quiz-hidden');
+        next.classList.add('quiz-entering');
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            next.classList.remove('quiz-entering');
+            next.classList.add('quiz-visible');
+          });
+        });
+      }
+    }, 200);
+  }
   document.getElementById('quizProgress').style.width = (step * 25) + '%';
 }
 
@@ -1406,8 +1468,24 @@ function showQuizResult() {
   }
   document.getElementById('quizResultName').textContent = pkg;
   document.getElementById('quizResultReason').textContent = reason;
-  document.querySelectorAll('.quiz-step').forEach(s => s.classList.add('quiz-hidden'));
-  document.querySelector('.quiz-step[data-step="result"]').classList.remove('quiz-hidden');
+
+  const current = document.querySelector('.quiz-step:not(.quiz-hidden)');
+  if (current) {
+    current.style.opacity = '0';
+    setTimeout(() => {
+      current.classList.add('quiz-hidden');
+      current.style.opacity = '';
+      const result = document.querySelector('.quiz-step[data-step="result"]');
+      result.classList.remove('quiz-hidden');
+      result.classList.add('quiz-entering');
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          result.classList.remove('quiz-entering');
+          result.classList.add('quiz-visible');
+        });
+      });
+    }, 200);
+  }
   document.getElementById('quizProgress').style.width = '100%';
 }
 </script>
